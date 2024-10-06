@@ -20,6 +20,23 @@ function obtener_usuario( dato ) {
     } )
 }
 
+function editar_usuario( dato ) {
+    return new Promise( (resolve, reject) => {
+       
+    } )
+}
+
+function eliminar_usuario( dato ) {
+    return new Promise( (resolve, reject) => {
+
+    } )
+}
+
+function listar_todos() {
+    return new Promise( (resolve, reject) => {
+
+    } )
+}
 module.exports = {
     insertar_usuario,
     obtener_usuario
