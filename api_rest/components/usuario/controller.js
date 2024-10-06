@@ -33,11 +33,21 @@ function eliminar_usuario( dato ) {
 }
 
 function listar_todos() {
-    return new Promise( (resolve, reject) => {
-
-    } )
+    return new Promise((resolve, reject) => {
+      storage.listar()
+          .then(usuarios => {
+              if (usuarios.length === 0) {
+                  resolve('No hay usuarios registrados')
+              } else {
+                  resolve(usuarios)
+              }
+          })
+          .catch(error => reject('Error al listar usuarios: ' + error))
+  })
 }
+
 module.exports = {
     insertar_usuario,
-    obtener_usuario
+    obtener_usuario, 
+    listar_todos
 }

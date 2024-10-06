@@ -16,7 +16,22 @@ async function obtener_usuario(dato) {
      return resultado
 }
 
+function listar_todos() {
+  return new Promise((resolve, reject) => {
+      storage.listar()
+          .then(usuarios => {
+              if (usuarios.length === 0) {
+                  resolve('No hay usuarios registrados')
+              } else {
+                  resolve(usuarios)
+              }
+          })
+          .catch(error => reject('Error al listar usuarios: ' + error))
+  })
+}
+
 module.exports = {
     insertar:insertar_usuario,
     obtener:obtener_usuario,
+    listar:listar_todos
 }
