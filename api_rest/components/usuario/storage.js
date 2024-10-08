@@ -30,8 +30,27 @@ function listar_todos() {
   })
 }
 
+async function eliminar_usuario(dato) {    
+    let usuario = {}
+    if (dato._id) {
+       usuario = { _id: dato._id }
+    }
+
+    const busqueda = await model.find( usuario )
+    if(busqueda.length == 0)
+    {
+        return {error: 'no existe id'}
+    }
+    else{
+        const resultado = await model.deleteOne(usuario)
+        return resultado
+    }
+   
+}
+
 module.exports = {
     insertar:insertar_usuario,
     obtener:obtener_usuario,
-    listar:listar_todos
+    listar:listar_todos,
+    eliminar:eliminar_usuario
 }

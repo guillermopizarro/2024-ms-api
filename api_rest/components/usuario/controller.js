@@ -28,7 +28,11 @@ function editar_usuario( dato ) {
 
 function eliminar_usuario( dato ) {
     return new Promise( (resolve, reject) => {
-
+        if (!dato._id) {
+            reject('No existe el usuario que quiere eliminar')
+        } else {
+            resolve(storage.eliminar(dato))
+        }
     } )
 }
 
@@ -49,5 +53,6 @@ function listar_todos() {
 module.exports = {
     insertar_usuario,
     obtener_usuario, 
-    listar_todos
+    listar_todos,
+    eliminar_usuario
 }
