@@ -39,7 +39,7 @@ async function eliminar_usuario(dato) {
     const busqueda = await model.find( usuario )
     if(busqueda.length == 0)
     {
-        return {error: 'no existe id'}
+        return {error: 'No existe id para eliminar'}
     }
     else{
         const resultado = await model.deleteOne(usuario)
@@ -48,9 +48,23 @@ async function eliminar_usuario(dato) {
    
 }
 
+async function actualizar_usuario(id, data) {    
+    if (id) {
+        const result = await model.updateOne(
+            { _id: id }, { $set: data }
+        )
+        if (result.acknowledged) {
+            return {data: "Resgistro actualizado exitosamente"}
+        }
+    }else{
+        return {error: 'No existe id para actualizar la información'}
+    }
+}
+
 module.exports = {
     insertar:insertar_usuario,
     obtener:obtener_usuario,
     listar:listar_todos,
-    eliminar:eliminar_usuario
+    eliminar:eliminar_usuario,
+    actualizar:actualizar_usuario
 }
