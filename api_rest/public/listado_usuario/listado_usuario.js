@@ -1,3 +1,5 @@
+var usuario_seleccionado = null;
+
 /**
  * Funcion utilizada para obtener todos los usurios desde el backend
  * @returns lista de usuarios
@@ -148,7 +150,10 @@ function agregar_detalle_tabla(usuarios) {
  * @param {*} usuario recibe el usuario a ser actualizado
  */
 function actualizar_usuario(usuario) {    
-        alert("actualizar usuario: " + JSON.stringify(usuario));        
+    usuario_seleccionado = usuario;
+    document.getElementById('nombre').value = usuario.nombre;
+    document.getElementById('apellido').value = usuario.apellido;
+    document.getElementById("form_usuario").style.display  = "block";
 }
 
 /**
@@ -191,4 +196,81 @@ function eliminar_usuario(usuario) {
             console.log("eliminar_usuario - ERROR", error);
             alert('Error al eliminar el usuario de usuario.');
         } )    
+}
+
+/**
+ * Visualiza el formulario de usuario
+ */
+function crear_usuario() {
+    document.getElementById("form_usuario").style.display  = "block";
+}
+
+/**
+ * Oculat el formulario de usuario
+ */
+function cancelar_form() {
+    document.getElementById('nombre').value = "" ;
+    document.getElementById('apellido').value = "";
+    document.getElementById("form_usuario").style.display  = "none";
+}
+
+/**
+ * Handler del boton guardar 
+ */
+function guardar_usuario() {
+    if (document.getElementById('nombre').value === "" || 
+        document.getElementById('apellido').value ===""){
+        alert("Por favor rellene ambos campos");
+        return;
+    }
+
+    var mensaje = "Usuario actualizado con éxito";
+    var accion =  "MODIFICAR";    
+    var usuario = usuario_seleccionado;
+    
+    if (usuario_seleccionado === null) {
+        var mensaje = "Usuario creado con éxito";
+        var accion =  "CREAR";    
+        var usuario = {};            
+    } 
+        
+    usuario.nombre = document.getElementById('nombre').value;
+    usuario.apellido = document.getElementById('apellido').value ;
+
+    guardar(usuario, accion)
+        .then( (response) => {
+            alert(mensaje);
+            listar_usuarios();
+        } )
+        .catch( (error) => {
+            console.log("guardar_usuario - ERROR", error);
+            alert('Error al guardar el usuario.');
+        } );
+    
+    usuario_seleccionado = null;
+    cancelar_form();
+}
+
+/**
+ * Guarda o actualiza la informacion de un usuario
+ * @param {*} usuario informacion a ser persistida
+ * @param {*} accion CREAR para nuevo usuario / MODIFICAR para un usuario existente
+ *  * @returns 
+ */
+function guardar(usuario, accion) {
+    var metodo =  (accion === "CREAR") ? "POST" : "PUT"; 
+    return new Promise((resolve, reject) => {
+        const request_options = {
+            method: metodo,
+            headers: {
+                'Content-Type': 'application/json' // Indicar que se envían datos JSON
+            }, 
+            body: JSON.stringify(usuario)
+        };
+        console.log("request_options", request_options);
+        
+        fetch('/usuario', request_options)
+            .then((data) => resolve(data.json()))
+            .catch((error) => reject(`[error]: ${error}`));
+    })
 }

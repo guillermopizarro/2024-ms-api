@@ -7,7 +7,7 @@ thead tr {
 
 th,
 td {
-    padding: 12px 15px;
+    padding: 7px 10px;
 }
 
 tbody tr {
@@ -42,8 +42,26 @@ tbody tr.active-row {
 
 .listado_usuario {
     display: flex;
-      justify-content: center; /* Centra horizontalmente */
-      align-items: center;     /* Centra verticalmente */
-      height: 100vh;           /* Ocupa el 100% de la altura de la ventana */
-      border: 1px solid #000;  /* Solo para visualizar el div */
+    justify-content: center;    
+}
+
+.form_usuario {        
+    border: 3px solid #009879; 
+    background-color: #f3f3f3;    
+    text-align: center;    
+    width: 210px;
+    justify-content: center;        
+    position: absolute;    
+    left: 15em;
+    top: 5em;
+    height: 15em;    
+}
+
+.form_usuario_title {
+    padding-top: 3px;
+    padding-bottom: 3px;
+    background-color: #009879;
+    color: #ffffff;
+    text-align: center; 
+    font-weight: bold;
 }
