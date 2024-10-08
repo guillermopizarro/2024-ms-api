@@ -9,8 +9,18 @@
         <div id="listado_usuario">
             aqui
         </div>
+        <div id="form_usuario" class="form_usuario" style=" display:none;">  
+            <div class="form_usuario_title">
+                INFORMACION DE USUARIO
+            </div>          
+            <input type="text" id="nombre" value="" placeholder="Ingrese el Nombre" style="margin-top: 10px;"/>            
+            <input type="text" id="apellido" value="" placeholder="Ingrese el Apellido" style="margin-top: 10px;"/>            
+            <button onclick="guardar_usuario()" style="margin-top: 20px;">Guardar</button>     
+            <button onclick="cancelar_form()" style="margin-top: 20px;">Cancelar</button>                 
+            
+        </div>
     </body>
-    <footer>
+    <footer>        
         <button onclick="crear_usuario()">Nuevo</button>            
     </footer>
 </html>
