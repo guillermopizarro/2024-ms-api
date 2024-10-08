@@ -178,14 +178,13 @@ function eliminar(usuario) {
  */
 function eliminar_usuario(usuario) {
     var nomnbre_completo = ` ${usuario["nombre"]} ${usuario["apellido"]}`
-    if (!confirm(
-        `Esta seguro que desea elminar el usuario \n\t ID: ${usuario["_id"]} \n\t NOMBRE: ${nomnbre_completo}` )) {
+    if (!confirm(`Esta seguro que desea eliminar el usuario \n\t ID: ${usuario["_id"]} \n\t NOMBRE: ${nomnbre_completo}` )) {
         return;
     }
 
     eliminar(usuario)
         .then( (response) => {
-            alert("Usuariio Eliminado con exito");
+            alert("Usuario eliminado con éxito");
             listar_usuarios();
         } )
         .catch( (error) => {
