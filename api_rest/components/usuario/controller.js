@@ -20,10 +20,14 @@ function obtener_usuario( dato ) {
     } )
 }
 
-function editar_usuario( dato ) {
+function editar_usuario( id, data ) {
     return new Promise( (resolve, reject) => {
-       
-    } )
+        if (!id) {
+            reject('No existe el usuario que quiere actualizar')
+        } else {
+            resolve(storage.actualizar(id, data))
+        }
+    } ) 
 }
 
 function eliminar_usuario( dato ) {
@@ -54,5 +58,6 @@ module.exports = {
     insertar_usuario,
     obtener_usuario, 
     listar_todos,
-    eliminar_usuario
+    eliminar_usuario,
+    editar_usuario
 }

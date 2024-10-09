@@ -17,8 +17,10 @@ routes.get('/', function(req, res) {
         .catch( (error) => response.error(req, res, error, 400) )
 })
 
-routes.put('/', function(req, res) {
-
+routes.put('/:id', function(req, res) {
+    controller.editar_usuario( req.params.id, req.body)
+    .then( (data) => response.success(req, res, data, 200) )
+    .catch( (error) => response.error(req, res, error, 400) )
 })
 
 routes.delete('/', function(req, res) {
