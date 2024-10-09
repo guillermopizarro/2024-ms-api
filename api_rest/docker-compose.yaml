@@ -14,17 +14,17 @@ services:
     volumes:
       - mongo_data:/data/db
   
-  miapp:
-    build: 
-      context: .
-      dockerfile: dockerfile
-    container_name: miapp
-    ports:
-      - "3000:3000"
-    depends_on:
-      - mongodb
-    networks:
-      - ups_net
+  # miapp:
+  #   build: 
+  #     context: .
+  #     dockerfile: dockerfile
+  #   container_name: miapp
+  #   ports:
+  #     - "3000:3000"
+  #   depends_on:
+  #     - mongodb
+  #   networks:
+  #     - ups_net
 
 networks:
   ups_net:
