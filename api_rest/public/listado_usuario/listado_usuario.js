@@ -268,9 +268,15 @@ function guardar(usuario, accion) {
             body: JSON.stringify(usuario)
         };
         console.log("request_options", request_options);
-        
-        fetch('/usuario', request_options)
+
+        if (metodo === "PUT"){
+            fetch(`/usuario/${usuario["_id"]}`, request_options)
             .then((data) => resolve(data.json()))
             .catch((error) => reject(`[error]: ${error}`));
+        } else {
+            fetch('/usuario', request_options)
+            .then((data) => resolve(data.json()))
+            .catch((error) => reject(`[error]: ${error}`));
+        }
     })
 }
