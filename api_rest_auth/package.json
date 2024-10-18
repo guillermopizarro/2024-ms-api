@@ -1,0 +1,28 @@
+{
+  "name": "api_rest_auth",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "build": "babel src --out-dir build",
+    "start": "nodemon src/index.js --exec babel-node",
+    "dev": "node build/index.js"
+  },
+  "author": "Guillermo Pizarro",
+  "license": "GPL-3.0",
+  "description": "",
+  "dependencies": {
+    "@babel/cli": "^7.25.7",
+    "@babel/core": "^7.25.8",
+    "@babel/node": "^7.25.7",
+    "@babel/preset-env": "^7.25.8",
+    "api_rest_auth": "file:",
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.21.1",
+    "helmet": "^8.0.0",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.7.2",
+    "morgan": "^1.10.0"
+  }
+}

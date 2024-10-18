@@ -9,6 +9,7 @@
   "license": "GPL-3.0",
   "description": "",
   "dependencies": {
+    "api_rest": "file:",
     "body-parser": "^1.20.3",
     "express": "^4.21.0",
     "mongoose": "^8.7.0"
