@@ -1,7 +1,7 @@
 {
-  "name": "server",
+  "name": "api_graphql_intro",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -9,8 +9,9 @@
   "license": "GPL-3.0",
   "description": "",
   "dependencies": {
-    "@grpc/grpc-js": "^1.12.2",
-    "@grpc/proto-loader": "^0.7.13",
-    "server": "file:"
+    "api_graphql_intro": "file:",
+    "express": "^4.21.1",
+    "express-graphql": "^0.12.0",
+    "graphql": "^16.9.0"
   }
 }
