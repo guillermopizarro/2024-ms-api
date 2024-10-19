@@ -1,11 +1,18 @@
 {
   "name": "api_graphql",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Guillermo Pizarro",
   "license": "GPL-3.0",
-  "description": ""
+  "description": "",
+  "dependencies": {
+    "api_graphql": "file:",
+    "express": "^4.21.1",
+    "graphql": "^16.9.0",
+    "graphql-http": "^1.22.1",
+    "mongoose": "^8.7.2"
+  }
 }
