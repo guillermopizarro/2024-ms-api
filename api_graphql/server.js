@@ -1,6 +1,7 @@
 const express = require('express')
-const { createHandler } = require('graphql-http')
+const { graphqlHTTP } = require('express-graphql');
 const { GraphQLSchema, GraphQLObjectType, GraphQLString, GraphQLInt, GraphQLList, GraphQLNonNull } = require('graphql')
+const cors = require('cors')
 
 const config = require('./config')
 const database = require('./database')
@@ -20,6 +21,10 @@ const ProductType = new GraphQLObjectType({
 const RootQuery = new GraphQLObjectType({
     name: 'RootQueryType',
     fields: {
+        hello: {
+            type: GraphQLString,
+            resolve: () => 'Hello World!',
+        },
         products: {
             type: new GraphQLList(ProductType),
             resolve:  async () => {
@@ -65,19 +70,26 @@ const schema = new GraphQLSchema({
 });
 
 const app = express();
+app.use(cors());
 app.use('/', express.static('public'))
 
 app.use(
     '/graphql',
-    createHandler({ 
-        schema: schema, 
-        graphiql: true,
-        onError: (error) => {
-            console.error('GraphQL Error: ', error);
-        }
+    graphqlHTTP({
+      schema: schema,
+      graphiql: true,
+      onRequest: (req, res) => {
+        console.log('Nueva solicitud GraphQL recibida.');
+      },
+      onError: (error) => {
+        console.error('GraphQL Error: ', error);
+      }
     })
-);
+  );
 
-app.listen(config.PORT, () => {
-  console.log(`Server is running on port http://localhost:${config.PORT}.`);
-});
+app.listen(config.PORT, (err) => {
+    if (err) {
+      console.error('Error al iniciar el servidor:', err);
+    } else {
+      console.log(`Server is running on http://localhost:${config.PORT}`);
+    }});
